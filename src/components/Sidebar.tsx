@@ -2,7 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Home, User, Briefcase, FolderOpen, Award, Mail, Music } from 'lucide-react';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isSidebarOpen: boolean;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   const navItems = [
     { path: '/', name: 'Home', icon: Home },
     { path: '/about', name: 'About', icon: User },
@@ -13,7 +17,7 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <div className="w-60 bg-black border-r border-gray-800 h-screen sticky top-0 flex flex-col">
+    <div className={`fixed top-0 left-0 h-full bg-black border-r border-gray-800 w-60 z-30 transform transition-transform duration-300 ease-in-out ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 md:flex md:flex-col`}>
       <div className="p-6 border-b border-gray-800">
         <div className="flex items-center space-x-2">
           <Music className="w-8 h-8 text-green-500" />
