@@ -5,75 +5,69 @@ import { Play, ExternalLink, Github, Filter } from 'lucide-react';
 const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   
-  const categories = ['All', 'Web App', 'Mobile', 'API', 'Open Source'];
+  const categories = ['All', 'MLOps', 'Machine Learning', 'Open Source', 'Data Analysis'];
   
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with React, Node.js, and Stripe integration',
-      category: 'Web App',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=400',
-      github: 'https://github.com',
-      demo: 'https://demo.com',
+      title: 'MLOps Pipeline for Real-Time Network Threat Detection',
+      description: 'Built a reproducible pipeline using DVC and MLflow to deploy an ensemble anomaly detection model for identifying network threats with high precision[cite: 28, 29].',
+      category: 'MLOps',
+      technologies: ['DVC', 'MLflow', 'GitHub Actions', 'Docker', 'Streamlit', 'Scikit-learn'],
+      image: 'https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=400',
+      github: 'https://github.com/Ananddd06/Network_Security_end_to_end_Mlops_DVC_Mlflow',
+      demo: '#',
       featured: true,
-      plays: '2.4K'
     },
     {
-      title: 'Task Management App',
-      description: 'Collaborative project management tool with real-time updates',
-      category: 'Web App',
-      technologies: ['Vue.js', 'Express', 'Socket.io', 'PostgreSQL'],
-      image: 'https://images.pexels.com/photos/3184431/pexels-photo-3184431.jpeg?auto=compress&cs=tinysrgb&w=400',
-      github: 'https://github.com',
-      demo: 'https://demo.com',
+      title: 'US Visa Approval Prediction System',
+      description: 'A continuously monitored ML system using Evidently AI for drift detection and automated retraining pipelines to ensure high accuracy over time[cite: 34, 36].',
+      category: 'Machine Learning',
+      technologies: ['Evidently AI', 'Scikit-learn', 'Pandas', 'Ensemble Models', 'CI/CD'],
+      image: 'https://images.pexels.com/photos/8962453/pexels-photo-8962453.jpeg?auto=compress&cs=tinysrgb&w=400',
+      github: 'https://github.com/Ananddd06/US_Visa_Prediction_ML',
+      demo: '#',
+      featured: true,
+    },
+    {
+      title: 'Student Performance Prediction Analysis',
+      description: 'Achieved 92% accuracy in predicting student outcomes by identifying influential factors using ANOVA and chi-squared tests[cite: 39, 41].',
+      category: 'Data Analysis',
+      technologies: ['Pandas', 'Scikit-learn', 'Regression', 'L1 & L2 Regularization', 'ANOVA'],
+      image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400',
+      github: 'https://github.com/Ananddd06/mlProject',
+      demo: '#',
       featured: false,
-      plays: '1.8K'
     },
     {
-      title: 'Weather Mobile App',
-      description: 'React Native weather app with location services and push notifications',
-      category: 'Mobile',
-      technologies: ['React Native', 'Redux', 'Weather API'],
-      image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=400',
-      github: 'https://github.com',
-      demo: 'https://demo.com',
-      featured: false,
-      plays: '956'
-    },
-    {
-      title: 'GraphQL API Server',
-      description: 'Scalable GraphQL API with authentication and real-time subscriptions',
-      category: 'API',
-      technologies: ['GraphQL', 'Apollo', 'Node.js', 'Redis'],
-      image: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=400',
-      github: 'https://github.com',
-      demo: 'https://demo.com',
-      featured: false,
-      plays: '743'
-    },
-    {
-      title: 'React Component Library',
-      description: 'Open source UI component library built with TypeScript and Storybook',
+      title: 'Beginner to Advanced Machine Learning for Freshers',
+      description: 'Open source educational project that guides beginners through advanced ML topics with examples and exercises.',
       category: 'Open Source',
-      technologies: ['React', 'TypeScript', 'Storybook', 'Rollup'],
-      image: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=400',
-      github: 'https://github.com',
-      demo: 'https://demo.com',
+      technologies: ['Python', 'Scikit-learn', 'Pandas', 'Matplotlib', 'Jupyter Notebook'],
+      image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=400',
+      github: 'https://github.com/Ananddd06/Beginner_to_Advance_Machine_Learning_for_Freshers',
+      demo: '#',
       featured: false,
-      plays: '1.2K'
     },
     {
-      title: 'AI Chat Bot',
-      description: 'Intelligent chatbot with natural language processing capabilities',
-      category: 'Web App',
-      technologies: ['Python', 'TensorFlow', 'Flask', 'React'],
-      image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=400',
-      github: 'https://github.com',
-      demo: 'https://demo.com',
+      title: 'Algerian Forest Fire Prediction',
+      description: 'Data analysis and EDA notebook to predict forest fire risk using regression techniques and explore the dataset thoroughly.',
+      category: 'Data Analysis',
+      technologies: ['Pandas', 'Scikit-learn', 'Matplotlib', 'Seaborn', 'Regression'],
+      image: 'https://images.pexels.com/photos/1323350/pexels-photo-1323350.jpeg?auto=compress&cs=tinysrgb&w=400',
+      github: 'https://github.com/Ananddd06/Algerian_Forest_fire_Prediction_Regression_Type',
+      demo: '#',
+      featured: false,
+    },
+    {
+      title: 'End-to-End ML Project with DagsHub, MLflow, DVC',
+      description: 'Complete ML pipeline including data versioning with DVC and experiment tracking with MLflow to maintain reproducibility and scalability.',
+      category: 'MLOps',
+      technologies: ['DVC', 'MLflow', 'Python', 'Scikit-learn', 'Streamlit', 'Docker'],
+      image: 'https://images.pexels.com/photos/5473946/pexels-photo-5473946.jpeg?auto=compress&cs=tinysrgb&w=400',
+      github: 'https://github.com/Ananddd06/End_to_End_ML_Project_with_DagsHub_Mlflow_DVC',
+      demo: '#',
       featured: true,
-      plays: '3.1K'
-    }
+    },
   ];
 
   const filteredProjects = activeFilter === 'All' 
@@ -147,7 +141,6 @@ const Projects: React.FC = () => {
                       <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                       <p className="text-gray-400 text-sm mb-4">{project.description}</p>
                     </div>
-                    <span className="text-xs text-gray-500">{project.plays} views</span>
                   </div>
                   
                   <div className="flex flex-wrap gap-2 mb-4">
@@ -162,6 +155,8 @@ const Projects: React.FC = () => {
                     <a 
                       href={project.github}
                       className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <Github className="w-4 h-4" />
                       <span className="text-sm">Code</span>
@@ -169,6 +164,8 @@ const Projects: React.FC = () => {
                     <a 
                       href={project.demo}
                       className="flex items-center space-x-2 text-green-500 hover:text-green-400 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <ExternalLink className="w-4 h-4" />
                       <span className="text-sm">Live Demo</span>
@@ -210,7 +207,6 @@ const Projects: React.FC = () => {
                   <p className="text-gray-400 text-xs mb-3 line-clamp-2">{project.description}</p>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">{project.plays} views</span>
                     <div className="flex space-x-2">
                       <a href={project.github} className="text-gray-400 hover:text-white">
                         <Github className="w-4 h-4" />

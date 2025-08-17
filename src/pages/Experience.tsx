@@ -1,54 +1,39 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building, Calendar, MapPin, ExternalLink } from 'lucide-react';
+import {Calendar, MapPin } from 'lucide-react';
 
 const Experience: React.FC = () => {
   const experiences = [
     {
-      company: 'Tech Innovations Inc.',
-      position: 'Senior Full Stack Developer',
-      period: '2022 - Present',
-      location: 'San Francisco, CA',
-      type: 'Full-time',
-      description: [
-        'Led development of customer-facing web applications serving 100K+ users',
-        'Built scalable APIs using Node.js, Express, and MongoDB',
-        'Mentored junior developers and conducted code reviews',
-        'Improved application performance by 40% through optimization'
-      ],
-      technologies: ['React', 'Node.js', 'TypeScript', 'AWS', 'MongoDB'],
-      logo: '🚀'
-    },
-    {
-      company: 'Digital Solutions Ltd.',
-      position: 'Frontend Developer',
-      period: '2021 - 2022',
-      location: 'Remote',
-      type: 'Full-time',
-      description: [
-        'Developed responsive web applications using React and Vue.js',
-        'Collaborated with design team to implement pixel-perfect UIs',
-        'Integrated third-party APIs and payment systems',
-        'Maintained and improved legacy codebase'
-      ],
-      technologies: ['React', 'Vue.js', 'JavaScript', 'SASS', 'Firebase'],
-      logo: '💻'
-    },
-    {
-      company: 'StartupXYZ',
-      position: 'Junior Developer Intern',
-      period: '2020 - 2021',
-      location: 'New York, NY',
+      company: 'Gradtwin',
+      position: 'Machine Learning Engineer Intern',
+      period: 'Dec 2024 – Mar 2025',
+      location: 'Chennai, India',
       type: 'Internship',
       description: [
-        'Assisted in building MVP for mobile application',
-        'Wrote unit tests and performed bug fixes',
-        'Participated in daily standups and sprint planning',
-        'Learned agile development methodologies'
+        'Designed and implemented a probabilistic feature selection pipeline using mutual information and variance thresholding, improving model accuracy by 25%.',
+        'Applied gradient boosting and regularized regression models, performing Bayesian hyperparameter optimization for maximum performance.',
+        'Architected and deployed a low-latency API using FastAPI, reducing median inference time by 30%.',
+        'Conducted statistical EDA to identify key features influencing accuracy, directly shaping product strategy.',
       ],
-      technologies: ['JavaScript', 'React Native', 'Python', 'Django'],
-      logo: '🌱'
-    }
+      technologies: ['Python', 'Scikit-learn', 'XGBoost', 'FastAPI', 'Bayesian Optimization'],
+      logo: '🤖',
+    },
+    {
+      company: 'Larsen & Toubro (L&T)',
+      position: 'ELV & ICT Engineer Intern',
+      period: 'Jan 2024 – Apr 2024',
+      location: 'Chennai, India',
+      type: 'Internship',
+      description: [
+        'Designed and integrated ELV systems (fire alarms, CCTV, access control, BMS) into the data center.',
+        'Created engineering drawings and layouts using AutoCAD, ensuring compliance with standards.',
+        'Planned and installed structured cabling (fiber optic and copper) for optimal data center communication.',
+        'Prepared a Bill of Quantity (BoQ) based on technical specifications.',
+      ],
+      technologies: ['AutoCAD', 'ELV Systems', 'ICT', 'Structured Cabling'],
+      logo: '🏗️',
+    },
   ];
 
   return (
@@ -68,7 +53,7 @@ const Experience: React.FC = () => {
           >
             Work Experience
           </motion.h1>
-          <p className="text-gray-400 text-lg">My professional journey in software development</p>
+          <p className="text-gray-400 text-lg">My professional journey in engineering & AI/ML</p>
         </div>
 
         {/* Timeline */}
@@ -110,10 +95,6 @@ const Experience: React.FC = () => {
                         <span className="bg-gray-800 px-2 py-1 rounded text-xs">{exp.type}</span>
                       </div>
                     </div>
-                    <button className="mt-4 lg:mt-0 flex items-center space-x-1 text-green-500 hover:text-green-400 transition-colors">
-                      <ExternalLink className="w-4 h-4" />
-                      <span className="text-sm">View Company</span>
-                    </button>
                   </div>
                   
                   <ul className="space-y-2 mb-6">

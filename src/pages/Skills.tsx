@@ -1,210 +1,269 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { TrendingUp, Code, Database, Palette, Cloud, Zap } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Code,
+  Brain,
+  Cloud,
+  Database,
+  Library,
+  BookOpen,
+  Play,
+  Music4,
+  Headphones,
+  Pause, // Import the Pause icon
+} from "lucide-react";
+
+// --- Data remains the same ---
+const skillCategories = [
+    {
+      title: "Programming Languages",
+      icon: Code,
+      color: "from-green-400 to-emerald-600",
+      skills: ["Python", "Java", "SQL"],
+    },
+    {
+      title: "Machine Learning & AI",
+      icon: Brain,
+      color: "from-blue-400 to-indigo-600",
+      skills: [
+        "Machine Learning Foundations",
+        "Deep Learning Foundations",
+        "Artificial Intelligence Applications",
+        "Probability & Statistics",
+        "Algorithms - I",
+      ],
+    },
+    {
+      title: "NLP & LLM",
+      icon: Library,
+      color: "from-pink-400 to-rose-600",
+      skills: [
+        "NLP",
+        "Large Language Models",
+        "NLTK",
+        "Spacy",
+        "Regex",
+        "Transformers (HF)",
+      ],
+    },
+    {
+      title: "Libraries & Frameworks",
+      icon: Database,
+      color: "from-yellow-400 to-orange-600",
+      skills: [
+        "NumPy",
+        "Pandas",
+        "Matplotlib",
+        "Seaborn",
+        "Scikit-learn",
+        "XGBoost",
+        "PyTorch",
+        "TensorFlow",
+      ],
+    },
+    {
+      title: "Tools & Platforms",
+      icon: Cloud,
+      color: "from-purple-400 to-fuchsia-600",
+      skills: [
+        "GitHub",
+        "Git",
+        "SSH",
+        "LaTeX",
+        "Jupyter Notebook",
+        "VS Code",
+      ],
+    },
+    {
+      title: "Relevant Courses",
+      icon: BookOpen,
+      color: "from-red-400 to-pink-600",
+      skills: [
+        "CS229 – Machine Learning (Stanford)",
+        "EE364a: Convex Optimization (Stephen Boyd)",
+        "CS224n – NLP with Deep Learning (Stanford)",
+        "CS25 – Transformers United (Stanford)",
+        "CS324 – Large Language Models (Stanford)",
+      ],
+    },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1 },
+};
 
 const Skills: React.FC = () => {
-  const skillCategories = [
-    {
-      title: 'Frontend Development',
-      icon: Code,
-      color: 'text-blue-500',
-      skills: [
-        { name: 'React', level: 95, experience: '3+ years' },
-        { name: 'TypeScript', level: 90, experience: '2+ years' },
-        { name: 'Vue.js', level: 85, experience: '2+ years' },
-        { name: 'Next.js', level: 88, experience: '1+ years' },
-        { name: 'Tailwind CSS', level: 92, experience: '2+ years' }
-      ]
-    },
-    {
-      title: 'Backend Development',
-      icon: Database,
-      color: 'text-green-500',
-      skills: [
-        { name: 'Node.js', level: 90, experience: '3+ years' },
-        { name: 'Express.js', level: 88, experience: '3+ years' },
-        { name: 'Python', level: 82, experience: '2+ years' },
-        { name: 'GraphQL', level: 75, experience: '1+ years' },
-        { name: 'PostgreSQL', level: 85, experience: '2+ years' }
-      ]
-    },
-    {
-      title: 'DevOps & Tools',
-      icon: Cloud,
-      color: 'text-purple-500',
-      skills: [
-        { name: 'AWS', level: 80, experience: '2+ years' },
-        { name: 'Docker', level: 78, experience: '1+ years' },
-        { name: 'Git', level: 95, experience: '3+ years' },
-        { name: 'CI/CD', level: 75, experience: '1+ years' },
-        { name: 'Kubernetes', level: 65, experience: '6+ months' }
-      ]
-    },
-    {
-      title: 'Design & UX',
-      icon: Palette,
-      color: 'text-pink-500',
-      skills: [
-        { name: 'Figma', level: 85, experience: '2+ years' },
-        { name: 'UI/UX Design', level: 80, experience: '2+ years' },
-        { name: 'Responsive Design', level: 92, experience: '3+ years' },
-        { name: 'Adobe Creative Suite', level: 70, experience: '1+ years' }
-      ]
-    }
-  ];
+  const [selectedCategory, setSelectedCategory] = useState(skillCategories[0]);
+  const [nowPlaying, setNowPlaying] = useState<string | null>(null);
 
-  const topSkills = [
-    { name: 'React', plays: '4.2M', level: 95, trend: '+12%' },
-    { name: 'Node.js', plays: '3.8M', level: 90, trend: '+8%' },
-    { name: 'TypeScript', plays: '3.5M', level: 90, trend: '+15%' },
-    { name: 'Tailwind CSS', plays: '2.9M', level: 92, trend: '+20%' },
-    { name: 'Express.js', plays: '2.7M', level: 88, trend: '+5%' }
-  ];
+  // --- NEW: Toggling play/pause handler ---
+  const handleTrackClick = (skillName: string) => {
+    if (nowPlaying === skillName) {
+      // If the clicked track is already playing, pause it
+      setNowPlaying(null);
+    } else {
+      // Otherwise, play the new track
+      setNowPlaying(skillName);
+    }
+  };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="p-8"
-    >
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <motion.h1 
-            initial={{ y: -20 }}
-            animate={{ y: 0 }}
-            className="text-4xl font-bold mb-4"
-          >
-            My Skills
-          </motion.h1>
-          <p className="text-gray-400 text-lg">Technologies and tools I work with</p>
-        </div>
-
-        {/* Top Skills - Spotify Style */}
-        <motion.div 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="bg-gray-900 rounded-lg p-8 mb-12"
+    <div className="bg-gradient-to-b from-gray-900 via-black to-black min-h-screen text-white font-sans p-4 sm:p-6 md:p-10 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <div className="flex items-center space-x-3 mb-6">
-            <TrendingUp className="w-6 h-6 text-green-500" />
-            <h2 className="text-2xl font-bold">Top Skills</h2>
-          </div>
-          
-          <div className="space-y-4">
-            {topSkills.map((skill, index) => (
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-3 flex items-center justify-center gap-3">
+            <Headphones className="text-green-400 w-10 h-10" />
+            <span>Skills & Expertise</span>
+          </h1>
+          <p className="text-gray-400 text-lg">
+            Explore my skillset like browsing a Spotify playlist.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <aside className="md:col-span-4 lg:col-span-3 bg-black/30 p-4 rounded-xl">
+            <h2 className="text-lg font-bold mb-4 px-2 text-gray-300">Playlists</h2>
+            <ul className="space-y-2">
+              {skillCategories.map((category) => (
+                <li key={category.title}>
+                  <button
+                    onClick={() => setSelectedCategory(category)}
+                    className={`w-full text-left flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ${
+                      selectedCategory.title === category.title
+                        ? "bg-green-500/20 text-green-300 font-semibold"
+                        : "text-gray-400 hover:bg-gray-800/50 hover:text-white"
+                    }`}
+                  >
+                    <category.icon className="w-5 h-5 flex-shrink-0" />
+                    <span>{category.title}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </aside>
+
+          <main className="md:col-span-8 lg:col-span-9">
+            <AnimatePresence mode="wait">
               <motion.div
-                key={skill.name}
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
-                className="flex items-center space-x-4 p-4 rounded-lg hover:bg-gray-800 transition-colors group"
+                key={selectedCategory.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="bg-gray-900/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm"
               >
-                <div className="text-green-500 font-bold text-lg w-6">
-                  {index + 1}
-                </div>
-                
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-700 rounded flex items-center justify-center">
-                  <span className="text-black font-bold text-sm">
-                    {skill.name.substring(0, 2)}
-                  </span>
-                </div>
-                
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-white truncate">{skill.name}</h3>
-                    <div className="flex items-center space-x-4 text-sm text-gray-400">
-                      <span>{skill.plays} projects</span>
-                      <span className="text-green-500">{skill.trend}</span>
-                    </div>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-6">
+                  <motion.div
+                    whileHover={{ scale: 1.05, rotateZ: 2 }}
+                    className={`w-24 h-24 sm:w-32 sm:h-32 rounded-lg flex items-center justify-center bg-gradient-to-br ${selectedCategory.color} shadow-2xl`}
+                  >
+                    <selectedCategory.icon className="w-12 h-12 sm:w-16 sm:h-16 text-black/80" />
+                  </motion.div>
+                  <div>
+                    <p className="text-sm font-medium text-green-400">PLAYLIST</p>
+                    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold">{selectedCategory.title}</h3>
+                    <p className="text-gray-400 text-sm mt-2">
+                      {selectedCategory.skills.length} tracks
+                    </p>
                   </div>
-                  
-                  <div className="w-full bg-gray-700 rounded-full h-2">
+                </div>
+
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="space-y-3"
+                >
+                  {selectedCategory.skills.map((skill, i) => (
                     <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${skill.level}%` }}
-                      transition={{ delay: 0.6 + index * 0.1, duration: 0.8 }}
-                      className="bg-green-500 h-2 rounded-full"
-                    ></motion.div>
-                  </div>
-                </div>
-                
-                <button className="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Zap className="w-5 h-5 text-gray-400 hover:text-white" />
-                </button>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Skill Categories */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {skillCategories.map((category, categoryIndex) => {
-            const Icon = category.icon;
-            return (
-              <motion.div
-                key={category.title}
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6 + categoryIndex * 0.2 }}
-                className="bg-gray-900 rounded-lg p-6"
-              >
-                <div className="flex items-center space-x-3 mb-6">
-                  <Icon className={`w-6 h-6 ${category.color}`} />
-                  <h3 className="text-xl font-bold">{category.title}</h3>
-                </div>
-                
-                <div className="space-y-4">
-                  {category.skills.map((skill, index) => (
-                    <div key={skill.name} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">{skill.name}</span>
-                        <div className="flex items-center space-x-2 text-sm text-gray-400">
-                          <span>{skill.experience}</span>
-                          <span>{skill.level}%</span>
+                      key={skill}
+                      variants={itemVariants}
+                      whileHover={{ backgroundColor: "rgba(31, 41, 55, 0.8)" }}
+                      onClick={() => handleTrackClick(skill)} // Use the new handler
+                      className="flex items-center justify-between rounded-lg px-4 py-3 group cursor-pointer transition-colors"
+                    >
+                      <div className="flex items-center space-x-4">
+                        {/* --- UPDATED: Dynamic Play/Pause Icon Logic --- */}
+                        <div className="w-5 h-5 text-center flex items-center justify-center relative">
+                          {nowPlaying === skill ? (
+                            <Pause className="w-5 h-5 text-green-400" />
+                          ) : (
+                            <>
+                              <span className="text-gray-400 group-hover:opacity-0 transition-opacity">
+                                {i + 1}
+                              </span>
+                              <Play className="w-5 h-5 text-green-400 opacity-0 group-hover:opacity-100 transition-opacity absolute" />
+                            </>
+                          )}
                         </div>
+                        <span className={`font-medium ${nowPlaying === skill ? 'text-green-300' : 'text-white'}`}>
+                          {skill}
+                        </span>
                       </div>
-                      
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.level}%` }}
-                          transition={{ 
-                            delay: 0.8 + categoryIndex * 0.2 + index * 0.1, 
-                            duration: 0.8 
-                          }}
-                          className="bg-gradient-to-r from-green-500 to-green-400 h-2 rounded-full"
-                        ></motion.div>
-                      </div>
-                    </div>
+                      <span className="text-xs text-gray-400 group-hover:text-green-400 transition-colors">
+                        Track {i + 1}
+                      </span>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </motion.div>
-            );
-          })}
+            </AnimatePresence>
+          </main>
         </div>
-
-        {/* Learning Section */}
-        <motion.div 
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-8 mt-12 text-center"
-        >
-          <h3 className="text-2xl font-bold text-black mb-4">Currently Learning</h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {['Rust', 'Go', 'Machine Learning', 'WebAssembly', 'Three.js'].map((skill) => (
-              <span key={skill} className="bg-black/20 text-black px-4 py-2 rounded-full font-medium">
-                {skill}
-              </span>
-            ))}
-          </div>
-          <p className="text-black/80 mt-4">Always expanding my toolkit with emerging technologies</p>
-        </motion.div>
       </div>
-    </motion.div>
+
+      <AnimatePresence>
+        {nowPlaying && (
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="fixed bottom-0 left-0 right-0 h-16 bg-gray-900/80 backdrop-blur-lg border-t border-green-500/20 flex items-center justify-between px-6 z-50"
+          >
+            <div className="flex items-center space-x-3">
+              <Music4 className="w-6 h-6 text-green-400" />
+              <div>
+                <p className="text-white font-semibold">{nowPlaying}</p>
+                <p className="text-xs text-gray-400">Now learning from: {selectedCategory.title}</p>
+              </div>
+            </div>
+            <div className="flex items-end space-x-1 h-5">
+              {[0.4, 0.2, 0.6, 0.3, 0.5].map((h, i) => (
+                  <motion.span
+                    key={i}
+                    style={{ height: `${h * 100}%` }}
+                    animate={{ scaleY: [1, 1.5, 1] }}
+                    transition={{
+                        duration: 0.8,
+                        repeat: Infinity,
+                        repeatType: "mirror",
+                        delay: i * 0.2,
+                    }}
+                    className="w-1 bg-green-400 rounded-full"
+                ></motion.span>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 

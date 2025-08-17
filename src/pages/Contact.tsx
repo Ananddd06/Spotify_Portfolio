@@ -7,12 +7,12 @@ import {
   MapPin, 
   Linkedin, 
   Github, 
-  Twitter, 
   Globe,
   Play,
   Pause,
   Volume2,
-  Heart
+  Heart,
+  Code2Icon
 } from 'lucide-react';
 
 const Contact: React.FC = () => {
@@ -23,6 +23,7 @@ const Contact: React.FC = () => {
     message: ''
   });
   const [isPlaying, setIsPlaying] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -33,22 +34,21 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
     console.log('Form submitted:', formData);
-    // Reset form or show success message
+    // Here you can integrate email sending via API like EmailJS or backend
   };
 
   const socialLinks = [
-    { name: 'LinkedIn', icon: Linkedin, url: 'https://linkedin.com', color: 'hover:text-blue-500' },
-    { name: 'GitHub', icon: Github, url: 'https://github.com', color: 'hover:text-purple-400' },
-    { name: 'Twitter', icon: Twitter, url: 'https://twitter.com', color: 'hover:text-blue-400' },
+    { name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/anandj06/', color: 'hover:text-blue-500' },
+    { name: 'GitHub', icon: Github, url: 'https://github.com/Ananddd06', color: 'hover:text-purple-400' },
+    { name: 'Leetcode', icon: Code2Icon, url: 'https://leetcode.com/u/getMaAnG/', color: 'hover:text-blue-400' },
     { name: 'Portfolio', icon: Globe, url: 'https://yourwebsite.com', color: 'hover:text-green-400' }
   ];
 
   const contactInfo = [
-    { icon: Mail, label: 'Email', value: 'your.email@example.com' },
-    { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
-    { icon: MapPin, label: 'Location', value: 'San Francisco, CA' }
+    { icon: Mail, label: 'Email', value: 'anand06.jeyakumar@gmail.com' },
+    { icon: Phone, label: 'Phone', value: '+91 9677166702' },
+    { icon: MapPin, label: 'Location', value: 'Chennai, IN' }
   ];
 
   return (
@@ -83,16 +83,21 @@ const Contact: React.FC = () => {
               {/* Profile Section */}
               <div className="text-center mb-6">
                 <div className="w-48 h-48 bg-gradient-to-br from-green-500 to-green-700 rounded-lg mx-auto mb-4 flex items-center justify-center shadow-2xl">
-                  <div className="text-4xl font-bold text-black">YN</div>
+                  <div className="text-4xl font-bold text-black">AJ</div>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Your Name</h3>
-                <p className="text-gray-400 text-sm mb-4">Full Stack Developer</p>
+                <h3 className="text-xl font-bold mb-2">Anand J</h3>
+                <p className="text-gray-400 text-sm mb-4">Machine Learning Engineer</p>
                 
                 {/* Now Playing Controls */}
                 <div className="flex items-center justify-center space-x-4 mb-6">
-                  <button className="text-gray-400 hover:text-white transition-colors">
-                    <Heart className="w-5 h-5" />
+                  {/* Heart toggle */}
+                  <button
+                    onClick={() => setLiked(!liked)}
+                    className="transition-colors duration-300"
+                  >
+                    <Heart className={`w-5 h-5 ${liked ? 'text-green-500 fill-current' : 'text-gray-400'}`} />
                   </button>
+
                   <button 
                     onClick={() => setIsPlaying(!isPlaying)}
                     className="w-12 h-12 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-black transition-all transform hover:scale-105"
@@ -207,7 +212,7 @@ const Contact: React.FC = () => {
                       onChange={handleChange}
                       required
                       className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-colors"
-                      placeholder="your.email@example.com"
+                      placeholder="anand06.jeyakumar@gmail.com"
                     />
                   </div>
                 </div>
@@ -288,9 +293,14 @@ const Contact: React.FC = () => {
               <button className="bg-black text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-900 transition-colors">
                 Schedule a Call
               </button>
-              <button className="border-2 border-black text-black px-8 py-3 rounded-full font-semibold hover:bg-black hover:text-white transition-colors">
+              <a 
+                href="/Anand_J.pdf"  // make sure the PDF is in your public folder
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="border-2 border-black text-black px-8 py-3 rounded-full font-semibold hover:bg-black hover:text-white transition-colors"
+              >
                 View Resume
-              </button>
+              </a>
             </div>
           </div>
         </motion.div>
