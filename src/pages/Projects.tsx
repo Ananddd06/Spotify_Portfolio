@@ -5,7 +5,7 @@ import { Play, ExternalLink, Github, Filter } from 'lucide-react';
 const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   
-  const categories = ['All', 'MLOps', 'Machine Learning', 'Open Source', 'Data Analysis'];
+  const categories = ['All', 'MLOps', 'Machine Learning','Artificial Intelligence', 'Open Source', 'Data Analysis'];
   
   const projects = [
     {
@@ -68,6 +68,16 @@ const Projects: React.FC = () => {
       demo: '#',
       featured: true,
     },
+    {
+      title: 'Domain Specific LLM Fine-Tuning',
+      description: 'Using the OpenAi API to fine-tune a domain-specific LLM for improved performance on specialized tasks.',
+      category: 'Artificial Intelligence',
+      technologies: ['OpenAI API', 'Python', 'React', 'Tailwind-CSS'],
+      image: 'https://images.pexels.com/photos/3184294/pexels-photo-3184294.jpeg?auto=compress&cs=tinysrgb&w=400',
+      github: 'https://github.com/Ananddd06/Ai_Domain_LLM_Frontend',
+      demo: 'https://ai-domain-llm-frontend.vercel.app/',
+      featured: false,
+    }
   ];
 
   const filteredProjects = activeFilter === 'All' 
