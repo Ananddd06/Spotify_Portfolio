@@ -48,6 +48,16 @@ const Projects: React.FC = () => {
       demo: '#',
       featured: false,
     },
+     {
+      title: 'Ml , DL , NLP , Transformer, LLMs, Deep digital Notes',
+      description: 'Open source educational project that guides beginners through advanced Theory with examples and Mathematical formulas.',
+      category: 'Open Source',
+      technologies: ['Python', 'Scikit-learn', 'Pandas', 'Matplotlib', 'Jupyter Notebook' , 'Deep Learning' , 'Pytorch'],
+      image: 'src/Images/Image.jpg',
+      github: 'https://github.com/Ananddd06/Machine_Learning_indepth_notes',
+      demo: '#',
+      featured: false,
+    },
     {
       title: 'Algerian Forest Fire Prediction',
       description: 'Data analysis and EDA notebook to predict forest fire risk using regression techniques and explore the dataset thoroughly.',
