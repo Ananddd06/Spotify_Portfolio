@@ -46,7 +46,7 @@ const Projects: React.FC = () => {
       image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=400',
       github: 'https://github.com/Ananddd06/Beginner_to_Advance_Machine_Learning_for_Freshers',
       demo: '#',
-      featured: false,
+      featured: true,
     },
      {
       title: 'Ml , DL , NLP , Transformer, LLMs, Deep digital Notes',
@@ -86,7 +86,7 @@ const Projects: React.FC = () => {
       image: 'https://images.pexels.com/photos/3184294/pexels-photo-3184294.jpeg?auto=compress&cs=tinysrgb&w=400',
       github: 'https://github.com/Ananddd06/Ai_Domain_LLM_Frontend',
       demo: 'https://ai-domain-llm-frontend.vercel.app/',
-      featured: false,
+      featured: true,
     }
   ];
 
