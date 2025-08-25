@@ -294,7 +294,7 @@ const Contact: React.FC = () => {
                 Schedule a Call
               </button>
               <a 
-                href="public/Anand_J.pdf"  // make sure the PDF is in your public folder
+                href="./public/Anand_J.pdf"  // make sure the PDF is in your public folder
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="border-2 border-black text-black px-8 py-3 rounded-full font-semibold hover:bg-black hover:text-white transition-colors"

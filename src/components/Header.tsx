@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ isSidebarOpen, setSidebarOpen }) => {
 
   const handleDownloadResume = () => {
     const link = document.createElement('a');
-    link.href = './Anand_J.pdf';
+    link.href = './public/Anand_J.pdf';
     link.download = 'Anand_J_Resume.pdf';
     document.body.appendChild(link);
     link.click();
